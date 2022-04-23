@@ -1,2 +1,2 @@
-# 5Fingers
+# HappyEats
 food delivery app
