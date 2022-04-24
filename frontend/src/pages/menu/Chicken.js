@@ -1,7 +1,7 @@
 import React from "react";
-import MenuBar from "../components/MenuBar";
+import MenuBar from "../../components/MenuBar";
 
-const Menu = () => {
+const Chicken = () => {
   return (
     <>
       <div className="flex flex-row">
@@ -11,4 +11,4 @@ const Menu = () => {
   );
 };
 
-export default Menu;
+export default Chicken;
