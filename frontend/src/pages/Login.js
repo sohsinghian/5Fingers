@@ -6,10 +6,10 @@ import { Container } from "@mui/material";
 import { Box } from "@mui/material";
 import { Typography } from "@mui/material";
 
-const Login = () => {
-  const buttonStyle =
-    "text-md font-bold bg-goldenbrown border-1 rounded-sm hover:bg-brightgolden mt-2 mb-2 py-1 w-full";
+const buttonStyle =
+  "text-md font-bold bg-goldenbrown border-1 rounded-sm hover:bg-brightgolden mt-2 mb-2 py-1 w-full";
 
+const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -34,8 +34,8 @@ const Login = () => {
             alignItems: "center",
           }}
         >
-          <Typography variant="h4">Welcome to 5Fingers</Typography>
-          <form onSubmit={handleSubmit} className="w-96">
+          <Typography variant="h4">Welcome to HappyEats</Typography>
+          <form onSubmit={handleSubmit} className="w-1/4">
             <Container component="main" maxWidth="sm">
               <TextField
                 type="email"
@@ -58,14 +58,14 @@ const Login = () => {
                 onChange={handlePasswordChange}
               />
               <button type="submit" className={buttonStyle}>
-                LOG IN
+                Sign in
               </button>
               <Link href="/change-password" variant="body2">
                 Forgot password?
               </Link>
               <br />
               <Link href="/register" variant="body2">
-                Don't have an account? Register now
+                Don't have an account? Create one!
               </Link>
             </Container>
           </form>
