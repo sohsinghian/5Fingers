@@ -155,9 +155,11 @@ const Register = () => {
             <button type="submit" className={buttonStyle}>
               Create Account
             </button>
-            <Link href="/login" variant="body2">
-              Already have an account? Sign in
-            </Link>
+            <div className="mb-32">
+              <Link href="/login" variant="body2">
+                Already have an account? Sign in
+              </Link>
+            </div>
           </Container>
         </form>
       </Box>

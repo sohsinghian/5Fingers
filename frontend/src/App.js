@@ -1,5 +1,6 @@
 import React from "react";
-import { Routes, Route} from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
+import NavBar from "./components/NavBar";
 import Cart from "./pages/Cart";
 import Login from "./pages/Login";
 import Main from "./pages/Main";
@@ -9,6 +10,7 @@ import Register from "./pages/Register";
 function App() {
   return (
     <>
+      <NavBar />
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/menu" element={<Menu />} />
