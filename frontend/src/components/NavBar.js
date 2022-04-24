@@ -12,7 +12,7 @@ const NavBar = () => {
           </NavLink>
         </div>
         <nav className="h-fit basis-full flex flex-row justify-between my-6">
-          <ul className="flex ml-28">
+          <ul className="flex flex-row ml-28">
             <li className="mr-20 hover:font-bold hover:underline underline-offset-4">
               <NavLink
                 to="/menu"
@@ -38,7 +38,7 @@ const NavBar = () => {
               </NavLink>
             </li>
           </ul>
-          <ul className="flex mr-32">
+          <ul className="flex flex-row mr-32">
             <li className="ml-20 hover:font-bold hover:underline underline-offset-4">
               <NavLink
                 to="cart"
