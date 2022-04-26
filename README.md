@@ -1,2 +1,2 @@
-# HappyEats
+# HappEats
 food delivery app
