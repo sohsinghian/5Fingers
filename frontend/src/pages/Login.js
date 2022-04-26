@@ -34,7 +34,7 @@ const Login = () => {
             alignItems: "center",
           }}
         >
-          <Typography variant="h4">Welcome to HappyEats</Typography>
+          <Typography variant="h4">Welcome to HappEats</Typography>
           <form onSubmit={handleSubmit} className="w-1/4">
             <Container component="main" maxWidth="sm">
               <TextField
