@@ -1,6 +1,14 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 const Main = () => {
+  useEffect(() => {
+    axios.get("http://localhost:5001").then((res) => {
+      const data = res.data;
+      console.log(data);
+    });
+  }, []);
+
   return (
     <>
       <h1>Main</h1>
