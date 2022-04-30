@@ -5,6 +5,7 @@ import Link from "@mui/material/Link";
 import { Container } from "@mui/material";
 import { Box } from "@mui/material";
 import { Typography } from "@mui/material";
+import axios from "axios";
 
 const buttonStyle =
   "text-md font-bold bg-goldenbrown border-1 rounded-sm hover:bg-brightgolden mt-2 mb-2 py-1 w-full";
@@ -12,6 +13,7 @@ const buttonStyle =
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [token, setToken] = useState("");
 
   const navigate = useNavigate();
 
@@ -20,7 +22,14 @@ const Login = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    navigate("/");
+    axios
+      .post("http://localhost:5001/users/login", { email, password })
+      .then((res) => {
+        if (res.data.status === "ok") {
+          setToken(res.data.accessToken);
+        }
+        navigate("/");
+      });
   };
 
   return (
