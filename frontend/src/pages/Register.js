@@ -5,6 +5,7 @@ import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import { Select } from "@mui/material";
 import { MenuItem } from "@mui/material";
+import axios from "axios";
 
 const buttonStyle =
   "text-md font-bold bg-goldenbrown border-1 rounded-sm hover:bg-brightgolden mt-2 mb-2 py-1 w-full";
@@ -33,6 +34,27 @@ const Register = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+
+    if (password === confirmPassword) {
+      axios
+        .post("http://localhost:5001/users/create", {
+          name,
+          gender,
+          dateOfBirth,
+          contactNum,
+          unitNumber,
+          postalCode,
+          email,
+          password,
+        })
+        .then((res) => {
+          if (res.data.status === "ok") {
+            console.log(res.data);
+          }
+        });
+    } else {
+      alert("password not matched");
+    }
   };
 
   return (
@@ -76,7 +98,6 @@ const Register = () => {
               size="small"
               fullWidth
               autoComplete="date"
-              required
               value={dateOfBirth}
               onChange={handleDateOfBirthChange}
             />
