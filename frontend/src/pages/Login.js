@@ -6,6 +6,8 @@ import { Container } from "@mui/material";
 import { Box } from "@mui/material";
 import { Typography } from "@mui/material";
 import axios from "axios";
+import { useSelector, useDispatch } from "react-redux";
+import { userActions } from "../store/userSlice";
 
 const buttonStyle =
   "text-md font-bold bg-goldenbrown border-1 rounded-sm hover:bg-brightgolden mt-2 mb-2 py-1 w-full";
@@ -13,9 +15,12 @@ const buttonStyle =
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [token, setToken] = useState("");
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const token = useSelector((state) => state.user.token);
+  const user = useSelector((state) => state.user.user);
 
   const handleEmailChange = (event) => setEmail(event.target.value);
   const handlePasswordChange = (event) => setPassword(event.target.value);
@@ -26,7 +31,7 @@ const Login = () => {
       .post("http://localhost:5001/users/login", { email, password })
       .then((res) => {
         if (res.data.status === "ok") {
-          setToken(res.data.accessToken);
+          dispatch(userActions.login(res.data));
         }
         navigate("/");
       });
@@ -58,7 +63,7 @@ const Login = () => {
               />
               <TextField
                 type="password"
-                margin="small"
+                margin="none"
                 size="small"
                 fullWidth
                 label="Password"

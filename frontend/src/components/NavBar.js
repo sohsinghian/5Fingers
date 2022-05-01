@@ -1,8 +1,22 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import logo from "../images/logo.jpeg";
+import { useDispatch, useSelector } from "react-redux";
+import { userActions } from "../store/userSlice";
 
 const NavBar = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const token = useSelector((state) => state.user.token);
+
+  const handleLogout = (event) => {
+    event.preventDefault();
+    dispatch(userActions.logout());
+    alert("user logged out");
+    navigate("/");
+  };
+
   return (
     <>
       <header className="flex flex-row justify-between bg-goldenbrown">
@@ -39,42 +53,70 @@ const NavBar = () => {
             </li>
           </ul>
           <ul className="flex flex-row mr-32">
-            <li className="ml-20 hover:font-bold hover:underline underline-offset-4">
-              <NavLink
-                to="cart"
-                className={(navData) =>
-                  navData.isActive
-                    ? "font-bold underline underline-offset-4"
-                    : ""
-                }
-              >
-                Cart
-              </NavLink>
-            </li>
-            <li className="ml-20 hover:font-bold hover:underline underline-offset-4">
-              <NavLink
-                to="register"
-                className={(navData) =>
-                  navData.isActive
-                    ? "font-bold underline underline-offset-4"
-                    : ""
-                }
-              >
-                Sign Up
-              </NavLink>
-            </li>
-            <li className="ml-20 hover:font-bold hover:underline underline-offset-4">
-              <NavLink
-                to="login"
-                className={(navData) =>
-                  navData.isActive
-                    ? "font-bold underline underline-offset-4"
-                    : ""
-                }
-              >
-                Login
-              </NavLink>
-            </li>
+            {token ? (
+              <>
+                <li className="ml-20 hover:font-bold hover:underline underline-offset-4">
+                  <NavLink
+                    to="cart"
+                    className={(navData) =>
+                      navData.isActive
+                        ? "font-bold underline underline-offset-4"
+                        : ""
+                    }
+                  >
+                    Cart
+                  </NavLink>
+                </li>
+                <li className="ml-20 hover:font-bold hover:underline underline-offset-4">
+                  <NavLink
+                    to="my-account"
+                    className={(navData) =>
+                      navData.isActive
+                        ? "font-bold underline underline-offset-4"
+                        : ""
+                    }
+                  >
+                    My Account
+                  </NavLink>
+                </li>
+              </>
+            ) : (
+              <li className="ml-20 hover:font-bold hover:underline underline-offset-4">
+                <NavLink
+                  to="register"
+                  className={(navData) =>
+                    navData.isActive
+                      ? "font-bold underline underline-offset-4"
+                      : ""
+                  }
+                >
+                  Sign Up
+                </NavLink>
+              </li>
+            )}
+            {token ? (
+              <li className="ml-20">
+                <button
+                  className="border-none hover:font-bold hover:underline underline-offset-4"
+                  onClick={handleLogout}
+                >
+                  Logout
+                </button>
+              </li>
+            ) : (
+              <li className="ml-20 hover:font-bold hover:underline underline-offset-4">
+                <NavLink
+                  to="login"
+                  className={(navData) =>
+                    navData.isActive
+                      ? "font-bold underline underline-offset-4"
+                      : ""
+                  }
+                >
+                  Login
+                </NavLink>
+              </li>
+            )}
           </ul>
         </nav>
       </header>

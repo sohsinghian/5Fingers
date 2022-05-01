@@ -35,7 +35,7 @@ const MenuBar = () => {
                   navData.isActive ? "font-bold text-maroon" : ""
                 }
               >
-                Drinks
+                Beverages
               </NavLink>
             </li>
           </ul>
