@@ -1,9 +1,19 @@
 import React, { useState, useEffect } from "react";
 import MenuBar from "../../components/MenuBar";
 import axios from "axios";
+import MenuCart from "../../components/MenuCart";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+
+const buttonStyle =
+  "text-md font-bold bg-brightred border-1 rounded-sm hover:bg-red mt-2 mb-2 py-1 w-16";
 
 const Chicken = () => {
   const [chicken, setChicken] = useState([]);
+
+  const navigate = useNavigate();
+
+  const token = useSelector((state) => state.user.token);
 
   useEffect(() => {
     axios.get("http://localhost:5001/food/chicken").then((res) => {
@@ -11,6 +21,11 @@ const Chicken = () => {
       setChicken(data);
     });
   }, []);
+
+  const handleSubmit = () => {
+    navigate("/login");
+  };
+
   return (
     <>
       <div className="flex flex-row">
@@ -26,14 +41,26 @@ const Chicken = () => {
                   width="300"
                   height="300"
                 />
-                <div className="flex flex-row">
-                  <p>{element.price}</p>
-                  <button className="float-right">ADD</button>
+                <div className="flex flex-row justify-between">
+                  <p>${element.price}</p>
+                  <button className={buttonStyle}>ADD</button>
                 </div>
               </div>
             );
           })}
         </div>
+        {token ? (
+          <MenuCart />
+        ) : (
+          <div className="text-center flex flex-col basis-1/4">
+            <button
+              onClick={handleSubmit}
+              className="font-bold mt-10 ml-5 bg-brightred h-20 w-full rounded-sm hover:bg-red"
+            >
+              LOGIN TO START ORDERING! 😋
+            </button>
+          </div>
+        )}
       </div>
     </>
   );

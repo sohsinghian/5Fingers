@@ -29,7 +29,7 @@ const NavBar = () => {
           <ul className="flex flex-row ml-28">
             <li className="mr-20 hover:font-bold hover:underline underline-offset-4">
               <NavLink
-                to="/menu"
+                to="/menu/chicken"
                 className={(navData) =>
                   navData.isActive
                     ? "font-bold underline underline-offset-4"
@@ -79,43 +79,42 @@ const NavBar = () => {
                     My Account
                   </NavLink>
                 </li>
+                <li className="ml-20">
+                  <button
+                    className="border-none hover:font-bold hover:underline underline-offset-4"
+                    onClick={handleLogout}
+                  >
+                    Logout
+                  </button>
+                </li>
               </>
             ) : (
-              <li className="ml-20 hover:font-bold hover:underline underline-offset-4">
-                <NavLink
-                  to="register"
-                  className={(navData) =>
-                    navData.isActive
-                      ? "font-bold underline underline-offset-4"
-                      : ""
-                  }
-                >
-                  Sign Up
-                </NavLink>
-              </li>
-            )}
-            {token ? (
-              <li className="ml-20">
-                <button
-                  className="border-none hover:font-bold hover:underline underline-offset-4"
-                  onClick={handleLogout}
-                >
-                  Logout
-                </button>
-              </li>
-            ) : (
-              <li className="ml-20 hover:font-bold hover:underline underline-offset-4">
-                <NavLink
-                  to="login"
-                  className={(navData) =>
-                    navData.isActive
-                      ? "font-bold underline underline-offset-4"
-                      : ""
-                  }
-                >
-                  Login
-                </NavLink>
-              </li>
+              <>
+                <li className="ml-20 hover:font-bold hover:underline underline-offset-4">
+                  <NavLink
+                    to="register"
+                    className={(navData) =>
+                      navData.isActive
+                        ? "font-bold underline underline-offset-4"
+                        : ""
+                    }
+                  >
+                    Sign Up
+                  </NavLink>
+                </li>
+                <li className="ml-20 hover:font-bold hover:underline underline-offset-4">
+                  <NavLink
+                    to="login"
+                    className={(navData) =>
+                      navData.isActive
+                        ? "font-bold underline underline-offset-4"
+                        : ""
+                    }
+                  >
+                    Login
+                  </NavLink>
+                </li>
+              </>
             )}
           </ul>
         </nav>

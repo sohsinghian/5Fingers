@@ -6,7 +6,7 @@ import { Container } from "@mui/material";
 import { Box } from "@mui/material";
 import { Typography } from "@mui/material";
 import axios from "axios";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { userActions } from "../store/userSlice";
 
 const buttonStyle =
@@ -19,8 +19,8 @@ const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const token = useSelector((state) => state.user.token);
-  const user = useSelector((state) => state.user.user);
+  // const token = useSelector((state) => state.user.token);
+  // const user = useSelector((state) => state.user.user);
 
   const handleEmailChange = (event) => setEmail(event.target.value);
   const handlePasswordChange = (event) => setPassword(event.target.value);

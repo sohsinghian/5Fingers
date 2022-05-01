@@ -2,6 +2,15 @@ const express = require("express");
 const foodRouter = express.Router();
 const pool = require("../database/database.js");
 
+foodRouter.get("/all", async (req, res) => {
+  try {
+    const food = await pool.query("SELECT * FROM food");
+    res.status(200).json(food.rows);
+  } catch (error) {
+    res.json({ status: "error", message: "connection error" });
+  }
+});
+
 foodRouter.get("/fries", async (req, res) => {
   try {
     const fries = await pool.query("SELECT * FROM food WHERE type='fries'");
