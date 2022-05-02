@@ -31,8 +31,8 @@ const MenuCart = () => {
           <p className="font-bold text-xl mb-6">Total: </p>
           <button className={buttonStyle}>CHECKOUT</button>
         </div>
-        <div className="ml-10 mt-10 font-bold">
-          <p className="text-xl">Order Details</p>
+        <div className="ml-10 mt-10">
+          <p className="text-xl font-bold">Order Details</p>
         </div>
       </div>
     </>

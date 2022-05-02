@@ -4,6 +4,7 @@ import axios from "axios";
 import MenuCart from "../../components/MenuCart";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { v4 as uuidv4 } from "uuid";
 
 const buttonStyle =
   "text-md font-bold bg-brightred border-1 rounded-sm hover:bg-red mt-2 mb-2 py-1 w-16";
@@ -14,6 +15,7 @@ const Chicken = () => {
   const navigate = useNavigate();
 
   const token = useSelector((state) => state.user.token);
+  const user = useSelector((state) => state.user.user);
 
   useEffect(() => {
     axios.get("http://localhost:5001/food/chicken").then((res) => {
@@ -21,6 +23,17 @@ const Chicken = () => {
       setChicken(data);
     });
   }, []);
+
+  const handleAddToCart = (event) => {
+    event.preventDefault();
+    const foodId = event.target.parentNode.parentNode.id;
+    const quantity = 1;
+    axios
+      .post("http://localhost:5001/cart/add", { token, foodId, quantity })
+      .then((res) => {
+        const data = res.data;
+      });
+  };
 
   const handleSubmit = () => {
     navigate("/login");
@@ -33,7 +46,11 @@ const Chicken = () => {
         <div className="flex flex-row flex-wrap basis-1/2">
           {chicken.map((element) => {
             return (
-              <div id={element.id} className="mt-6 ml-10 bg-white">
+              <div
+                id={element.id}
+                key={uuidv4()}
+                className="mt-6 ml-10 bg-white"
+              >
                 <p>{element.name}</p>
                 <img
                   src={element.image}
@@ -43,7 +60,9 @@ const Chicken = () => {
                 />
                 <div className="flex flex-row justify-between">
                   <p>${element.price}</p>
-                  <button className={buttonStyle}>ADD</button>
+                  <button onClick={handleAddToCart} className={buttonStyle}>
+                    ADD
+                  </button>
                 </div>
               </div>
             );

@@ -15,7 +15,7 @@ const MenuBar = () => {
                   navData.isActive ? "font-bold text-maroon" : ""
                 }
               >
-                Chicken
+                😋 Chicken 😋
               </NavLink>
             </li>
             <li className="mb-5 hover:font-bold hover:text-maroon">
@@ -25,7 +25,7 @@ const MenuBar = () => {
                   navData.isActive ? "font-bold text-maroon" : ""
                 }
               >
-                Fries
+                😋 Fries 😋
               </NavLink>
             </li>
             <li className="hover:font-bold hover:text-maroon">
@@ -35,7 +35,7 @@ const MenuBar = () => {
                   navData.isActive ? "font-bold text-maroon" : ""
                 }
               >
-                Beverages
+                😋 Beverages 😋
               </NavLink>
             </li>
           </ul>

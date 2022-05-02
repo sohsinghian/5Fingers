@@ -26,8 +26,8 @@ CREATE TABLE food (
 );
 
 CREATE TABLE cartItems (
-    userEmail VARCHAR(50) NOT NULL PRIMARY KEY UNIQUE,
-    foodId SERIAL NOT NULL UNIQUE,
+    userEmail VARCHAR(50) NOT NULL,
+    foodId SERIAL NOT NULL PRIMARY KEY UNIQUE,
     quantity INTEGER
 );
 
@@ -35,7 +35,7 @@ CREATE TABLE orders (
     id SERIAL NOT NULL PRIMARY KEY UNIQUE,
     orderDateTime TIMESTAMP NOT NULL,
     deliveredDateTime TIMESTAMP NOT NULL,
-    userEmail VARCHAR(50) NOT NULL UNIQUE
+    userEmail VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE foodOrders (
@@ -47,6 +47,9 @@ CREATE TABLE foodOrders (
 
 ALTER TABLE ONLY cartItems
     ADD CONSTRAINT cartItems_userEmail_fkey FOREIGN KEY (userEmail) REFERENCES users(email);
+
+ALTER TABLE ONLY cartItems
+    ADD CONSTRAINT cartItems_foodId_fkey FOREIGN KEY (foodId) REFERENCES food(id);
 
 ALTER TABLE ONLY orders
     ADD CONSTRAINT orders_userEmail_fkey FOREIGN KEY (userEmail) REFERENCES users(email);

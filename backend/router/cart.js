@@ -5,13 +5,38 @@ const jwt = require("jsonwebtoken");
 
 cartRouter.post("/add", async (req, res) => {
   try {
-    const cartItem = await pool.query(
-      `INSERT INTO cartItems (userEmail, foodId, quantity)
-        VALUES ($1, $2, $3)`,
-      [req.body.email, req.body.foodId, req.body.quantity]
+    const decodedToken = jwt.verify(req.body.token, process.env.SECRET);
+
+    const foodId = await pool.query(
+      `SELECT foodId FROM cartItems
+      WHERE foodId=$1`,
+      [req.body.foodId]
     );
-    console.log("cart item added is: ", cartItem);
-    res.json({ status: "ok", message: "added to cart" });
+
+    if (foodId.rowCount === 0) {
+      const cartItem = await pool.query(
+        `INSERT INTO cartItems (userEmail, foodId, quantity)
+        VALUES ($1, $2, $3)`,
+        [decodedToken.email, req.body.foodId, req.body.quantity]
+      );
+      console.log("cart item added is: ", cartItem);
+      res.json({ status: "ok", message: "added to cart" });
+    } else {
+      const currentQuantity = await pool.query(
+        `SELECT quantity FROM cartItems
+            WHERE foodId=$1`,
+        [req.body.foodId]
+      );
+      const updated = currentQuantity.rows[0].quantity + 1;
+
+      const updateQuantity = await pool.query(
+        `UPDATE cartItems
+        SET quantity=$1
+        WHERE foodId=$2`,
+        [updated, req.body.foodId]
+      );
+      res.json({ status: "ok", message: "quantity updated" });
+    }
   } catch (error) {
     res
       .status(401)
