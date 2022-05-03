@@ -1,10 +1,9 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import NavBar from "./components/NavBar";
-import Cart from "./pages/Cart";
+import CartPage from "./pages/CartPage";
 import Login from "./pages/Login";
 import Main from "./pages/Main";
-import Menu from "./pages/Menu";
 import Chicken from "./pages/menu/Chicken";
 import Drinks from "./pages/menu/Drinks";
 import Fries from "./pages/menu/Fries";
@@ -16,10 +15,9 @@ function App() {
       <NavBar />
       <Routes>
         <Route path="/" element={<Main />} />
-        <Route path="/menu" element={<Menu />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/cart" element={<Cart />} />
+        <Route path="/cart" element={<CartPage />} />
         <Route path="/menu/chicken" element={<Chicken />} />
         <Route path="/menu/fries" element={<Fries />} />
         <Route path="/menu/drinks" element={<Drinks />} />

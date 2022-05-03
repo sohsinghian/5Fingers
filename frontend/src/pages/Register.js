@@ -6,6 +6,7 @@ import Container from "@mui/material/Container";
 import { Select } from "@mui/material";
 import { MenuItem } from "@mui/material";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const buttonStyle =
   "text-md font-bold bg-goldenbrown border-1 rounded-sm hover:bg-brightgolden mt-2 mb-2 py-1 w-full";
@@ -20,6 +21,8 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+
+  const navigate = useNavigate();
 
   const handleNameChange = (event) => setName(event.target.value);
   const handleGenderChange = (event) => setGender(event.target.value);
@@ -49,8 +52,9 @@ const Register = () => {
         })
         .then((res) => {
           if (res.data.status === "ok") {
-            console.log(res.data);
+            alert("account created. login to start ordering.");
           }
+          navigate("/login");
         });
     } else {
       alert("password not matched");
@@ -84,8 +88,9 @@ const Register = () => {
             <p className="font-bold">Gender:</p>
             <Select
               fullWidth
-              value={gender}
               label="Gender"
+              size="small"
+              value={gender}
               onChange={handleGenderChange}
             >
               <MenuItem value="male">Male</MenuItem>
@@ -93,7 +98,7 @@ const Register = () => {
             </Select>
             <p className="font-bold -mb-4 mt-2">Date of Birth:</p>
             <TextField
-              type="date"
+              type="text"
               margin="normal"
               size="small"
               fullWidth

@@ -22,9 +22,14 @@ usersRouter.post("/login", async (req, res) => {
   const result = await bcrypt.compare(password, user.rows[0].password);
   if (result) {
     const token = jwt.sign({ email: email }, process.env.SECRET, {
-      expiresIn: "300s",
+      expiresIn: "1800s",
     });
-    res.json({ status: "ok", message: "user logged in", accessToken: token });
+    res.json({
+      status: "ok",
+      message: "user logged in",
+      accessToken: token,
+      user: user.rows,
+    });
   } else {
     res.status(401).json(usernameOrPasswordError);
   }
