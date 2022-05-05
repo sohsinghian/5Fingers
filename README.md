@@ -8,13 +8,13 @@ This project aims to create an app where users can add food items to cart to ord
 
 ### Technical Used
 
-PERN stack - PostgreSQL, Express, React, Node.js
-CSS - Tailwind, Material UI
-Stripe for checkout test payment
-Redux for storing users states and cart
-moment.js for date and time
-OneMap API to fetch address with postal code
-JSON Web Token (JWT) for authentication
+- PERN stack - PostgreSQL, Express, React, Node.js
+- CSS - Tailwind, Material UI
+- Stripe for checkout test payment
+- Redux for storing users states and cart
+- moment.js for date and time
+- OneMap API to fetch address with postal code
+- JSON Web Token (JWT) for authentication
 
 <!-- ### Wireframes -->
 
