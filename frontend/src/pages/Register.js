@@ -14,7 +14,6 @@ const buttonStyle =
 const Register = () => {
   const [name, setName] = useState("");
   const [gender, setGender] = useState("");
-  const [dateOfBirth, setDateOfBirth] = useState("");
   const [contactNum, setContactNum] = useState("");
   const [postalCode, setPostalCode] = useState("");
   const [unitNumber, setUnitNumber] = useState("");
@@ -26,7 +25,6 @@ const Register = () => {
 
   const handleNameChange = (event) => setName(event.target.value);
   const handleGenderChange = (event) => setGender(event.target.value);
-  const handleDateOfBirthChange = (event) => setDateOfBirth(event.target.value);
   const handleContactNumChange = (event) => setContactNum(event.target.value);
   const handlePostalCodeChange = (event) => setPostalCode(event.target.value);
   const handleUnitNumberChange = (event) => setUnitNumber(event.target.value);
@@ -35,17 +33,27 @@ const Register = () => {
   const handleConfirmPasswordChange = (event) =>
     setConfirmPassword(event.target.value);
 
-  const handleSubmit = (event) => {
+  const getAddress = async () => {
+    const res = await axios.get(
+      `https://developers.onemap.sg/commonapi/search?searchVal=${postalCode}&returnGeom=Y&getAddrDetails=Y&pageNum=1`
+    );
+    const data = res.data;
+    const completeAddress = `${data.results[0].BLK_NO} ${data.results[0].ROAD_NAME} #${unitNumber}`;
+    return completeAddress;
+  };
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
+
+    const address = await getAddress();
 
     if (password === confirmPassword) {
       axios
         .post("http://localhost:5001/users/create", {
           name,
           gender,
-          dateOfBirth,
           contactNum,
-          unitNumber,
+          address,
           postalCode,
           email,
           password,
@@ -96,16 +104,6 @@ const Register = () => {
               <MenuItem value="male">Male</MenuItem>
               <MenuItem value="female">Female</MenuItem>
             </Select>
-            <p className="font-bold -mb-4 mt-2">Date of Birth:</p>
-            <TextField
-              type="text"
-              margin="normal"
-              size="small"
-              fullWidth
-              autoComplete="date"
-              value={dateOfBirth}
-              onChange={handleDateOfBirthChange}
-            />
             <p className="font-bold -mb-4">Contact Number:</p>
             <TextField
               type="number"
