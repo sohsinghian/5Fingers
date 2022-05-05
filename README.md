@@ -47,9 +47,9 @@ I also googled the error messages if I am not sure what that error means to find
 
 ### Unsolved problems
 
-Unable to render the user account details after updating yet. Had to logout and login again to render the details for now.
-Unable to update email when there is items in the user's cart.
-User will automatically logout when user refreshes the page.
+- Unable to render the user account details after updating yet. Had to logout and login again to render the details for now.
+- Unable to update email when there is items in the user's cart.
+- User will automatically logout when user refreshes the page.
 
 ## APIs Used
 
