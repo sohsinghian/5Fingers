@@ -53,16 +53,16 @@ User will automatically logout when user refreshes the page.
 
 ## APIs Used
 
-OneMap API - Used to get user's address with the postal code input.
-Restful APIs - Used to CRUD (Create, Read, Update, Delete)
+- OneMap API - Used to get user's address with the postal code input.
+- Restful APIs - Used to CRUD (Create, Read, Update, Delete)
 
 ## Acknowledgments
 
-Thank you to our instructor, Desmond for teaching us.
-Thank you to our IAs, Qizhen and Ernest for guiding us when we are stucked.
-Thank you to my classmates for introducing me to many other frameworks not taught in the syallabus.
+- Thank you to our instructor, Desmond for teaching us.
+- Thank you to our IAs, Qizhen and Ernest for guiding us when we are stucked.
+- Thank you to my classmates for introducing me to many other frameworks not taught in the syallabus.
 
 # References
 
-https://www.onemap.gov.sg/docs/
-https://blog.logrocket.com/nodejs-expressjs-postgresql-crud-rest-api-example/
+- https://www.onemap.gov.sg/docs/
+- https://blog.logrocket.com/nodejs-expressjs-postgresql-crud-rest-api-example/
