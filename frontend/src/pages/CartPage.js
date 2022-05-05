@@ -3,7 +3,6 @@ import { useSelector } from "react-redux";
 
 const CartPage = () => {
   const cart = useSelector((state) => state.user.cart);
-  console.log(cart);
   return (
     <>
       <div></div>

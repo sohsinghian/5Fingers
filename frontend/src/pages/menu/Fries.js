@@ -17,9 +17,6 @@ const Fries = () => {
   const dispatch = useDispatch();
 
   const token = useSelector((state) => state.user.token);
-  const user = useSelector((state) => state.user.user);
-  const subTotal = useSelector((state) => state.user.subTotal);
-  const total = useSelector((state) => state.user.total);
   const deliveryFee = useSelector((state) => state.user.deliveryFee);
 
   useEffect(() => {
@@ -30,36 +27,49 @@ const Fries = () => {
   }, []);
 
   const fetchCart = async () => {
-    await axios.get("http://localhost:5001/cart/all").then((res) => {
-      const data = res.data;
-      dispatch(userActions.setCart(data));
-    });
-    await axios.get("http://localhost:5001/cart/subTotal").then((res) => {
-      const data = res.data;
-      dispatch(userActions.setSubTotal(Number(data).toFixed(2)));
-      if (Number(data) > 0) {
-        const deliveryCharge = 4;
-        dispatch(userActions.setDeliveryFee(deliveryCharge.toFixed(2)));
-
-        const totalPrice = (Number(data) + 4).toFixed(2);
-        dispatch(userActions.setTotal(totalPrice));
-      } else {
-        const zero = 0;
-        dispatch(userActions.setDeliveryFee(zero.toFixed(2)));
-        dispatch(userActions.setTotal(zero.toFixed(2)));
-      }
-    });
+    await axios
+      .post("http://localhost:5001/cart/all", {
+        token,
+      })
+      .then((res) => {
+        const data = res.data;
+        dispatch(userActions.setCart(data));
+      });
+    await axios
+      .post("http://localhost:5001/cart/subTotal", { token })
+      .then((res) => {
+        const data = res.data;
+        dispatch(userActions.setSubTotal(Number(data).toFixed(2)));
+        if (Number(data) > 0) {
+          if (Number(data) > 50) {
+            const deliveryCharge = 0;
+            const totalPrice = Number(data).toFixed(2);
+            dispatch(userActions.setDeliveryFee(deliveryCharge.toFixed(2)));
+            dispatch(userActions.setTotal(totalPrice));
+          } else {
+            const deliveryCharge = 4;
+            const totalPrice = (Number(data) + Number(deliveryFee)).toFixed(2);
+            dispatch(userActions.setDeliveryFee(deliveryCharge.toFixed(2)));
+            dispatch(userActions.setTotal(totalPrice));
+          }
+        } else {
+          const zero = 0;
+          dispatch(userActions.setDeliveryFee(zero.toFixed(2)));
+          dispatch(userActions.setTotal(zero.toFixed(2)));
+        }
+      });
   };
 
   const handleAddToCart = async (event) => {
     event.preventDefault();
     const foodId = event.target.parentNode.parentNode.id;
     const quantity = 1;
-    await axios
-      .post("http://localhost:5001/cart/add", { token, foodId, quantity })
-      .then((res) => {
-        const data = res.data;
-      });
+    await axios.post("http://localhost:5001/cart/add", {
+      token,
+      foodId,
+      quantity,
+    });
+
     fetchCart();
   };
 
@@ -69,7 +79,7 @@ const Fries = () => {
 
   return (
     <>
-      <div className="flex flex-row">
+      <div className="flex flex-row mb-20">
         <MenuBar />
         <div className="flex flex-row flex-wrap basis-1/2 h-fit">
           {fries.map((element) => {
@@ -77,17 +87,16 @@ const Fries = () => {
               <div
                 id={element.id}
                 key={uuidv4()}
-                className="mt-6 ml-10 bg-white"
+                className="mt-6 ml-7 bg-white"
               >
-                <p>{element.name}</p>
+                <p className="mt-1 mb-1 ml-2">{element.name}</p>
                 <img
                   src={element.image}
                   alt={element.name}
-                  width="300"
-                  height="300"
+                  className="object-cover h-52 w-80"
                 />
                 <div className="flex flex-row justify-between">
-                  <p>${element.price}</p>
+                  <p className="self-center ml-2">${element.price}</p>
                   <button onClick={handleAddToCart} className={buttonStyle}>
                     ADD
                   </button>

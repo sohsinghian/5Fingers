@@ -26,8 +26,9 @@ CREATE TABLE food (
 );
 
 CREATE TABLE cartItems (
+    id SERIAL NOT NULL PRIMARY KEY UNIQUE,
     userEmail VARCHAR(50) NOT NULL,
-    foodId SERIAL NOT NULL PRIMARY KEY UNIQUE,
+    foodId SERIAL NOT NULL,
     quantity INTEGER
 );
 

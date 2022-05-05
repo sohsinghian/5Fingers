@@ -33,7 +33,7 @@ const Login = () => {
         if (res.data.status === "ok") {
           dispatch(userActions.login(res.data));
         }
-        navigate("/");
+        navigate("/menu/chicken");
       });
   };
 

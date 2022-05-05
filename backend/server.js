@@ -3,6 +3,7 @@ const cors = require("cors");
 const users = require("./router/users");
 const food = require("./router/food");
 const cart = require("./router/cart");
+const stripe = require("./router/stripe");
 const app = express();
 
 require("dotenv").config();
@@ -14,6 +15,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use("/users", users);
 app.use("/food", food);
 app.use("/cart", cart);
+app.use("/stripe", stripe);
 
 app.get("/", (req, res) => {
   res.send("HappEats working");
