@@ -79,7 +79,7 @@ const Chicken = () => {
 
   return (
     <>
-      <div className="flex flex-row">
+      <div className="flex flex-row mb-20">
         <MenuBar />
         <div className="flex flex-row flex-wrap basis-1/2 h-fit">
           {chicken.map((element) => {
@@ -96,10 +96,12 @@ const Chicken = () => {
                   className="object-cover h-52 w-80"
                 />
                 <div className="flex flex-row justify-between">
-                  <p className="self-center ml-2">${element.price}</p>
-                  <button onClick={handleAddToCart} className={buttonStyle}>
-                    ADD
-                  </button>
+                  <p className="self-center ml-2 mt-2 mb-2">${element.price}</p>
+                  {token && (
+                    <button onClick={handleAddToCart} className={buttonStyle}>
+                      ADD
+                    </button>
+                  )}
                 </div>
               </div>
             );

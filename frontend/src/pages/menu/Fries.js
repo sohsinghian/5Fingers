@@ -97,9 +97,11 @@ const Fries = () => {
                 />
                 <div className="flex flex-row justify-between">
                   <p className="self-center ml-2">${element.price}</p>
-                  <button onClick={handleAddToCart} className={buttonStyle}>
-                    ADD
-                  </button>
+                  {token && (
+                    <button onClick={handleAddToCart} className={buttonStyle}>
+                      ADD
+                    </button>
+                  )}
                 </div>
               </div>
             );

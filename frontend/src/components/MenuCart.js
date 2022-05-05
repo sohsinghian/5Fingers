@@ -164,7 +164,7 @@ const MenuCart = () => {
             CHECKOUT
           </button>
         </div>
-        <div className="mt-10">
+        <div className="basis-1/4 mt-10">
           <p className="text-xl font-bold">Order Details</p>
           {cart ? (
             cart.map((element) => {

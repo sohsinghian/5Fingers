@@ -79,7 +79,7 @@ const Drinks = () => {
 
   return (
     <>
-      <div className="flex flex-row">
+      <div className="flex flex-row mb-20">
         <MenuBar />
         <div className="flex flex-row flex-wrap basis-1/2 h-fit">
           {beverages.map((element) => {
@@ -97,9 +97,11 @@ const Drinks = () => {
                 />
                 <div className="flex flex-row justify-between">
                   <p className="self-center ml-2">${element.price}</p>
-                  <button onClick={handleAddToCart} className={buttonStyle}>
-                    ADD
-                  </button>
+                  {token && (
+                    <button onClick={handleAddToCart} className={buttonStyle}>
+                      ADD
+                    </button>
+                  )}
                 </div>
               </div>
             );
