@@ -1,16 +1,5 @@
 # HappEats
 
-food delivery app
-
-An embedded screenshot of the app
-Explanations of the technologies used
-A couple paragraphs about the general approach you took
-Installation instructions for any dependencies
-Link to your wireframes – sketches of major views / interfaces in your application
-Descriptions of any unsolved problems or major hurdles you had to overcome
-
-# HappEats
-
 HappEats is a food delivery app.
 
 ## Description
