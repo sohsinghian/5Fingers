@@ -87,7 +87,7 @@ const Chicken = () => {
               <div
                 id={element.id}
                 key={uuidv4()}
-                className="mt-6 ml-7 bg-white"
+                className="mt-6 ml-7 bg-white font-['Roboto']"
               >
                 <p className="mt-1 mb-1 ml-2">{element.name}</p>
                 <img

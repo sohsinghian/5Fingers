@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
-import { Select } from "@mui/material";
-import { MenuItem } from "@mui/material";
+// import { Select } from "@mui/material";
+// import { MenuItem } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -14,7 +14,7 @@ const buttonStyle =
 
 const MyAccount = () => {
   const [name, setName] = useState("");
-  const [gender, setGender] = useState("");
+//   const [gender, setGender] = useState("");
   const [contactNum, setContactNum] = useState("");
   const [postalCode, setPostalCode] = useState("");
   const [unitNumber, setUnitNumber] = useState("");
@@ -24,7 +24,7 @@ const MyAccount = () => {
   const [hasLoaded, setHasLoaded] = useState(false);
 
   const handleNameChange = (event) => setName(event.target.value);
-  const handleGenderChange = (event) => setGender(event.target.value);
+//   const handleGenderChange = (event) => setGender(event.target.value);
   const handleContactNumChange = (event) => setContactNum(event.target.value);
   const handlePostalCodeChange = (event) => setPostalCode(event.target.value);
   const handleUnitNumberChange = (event) => setUnitNumber(event.target.value);
@@ -44,12 +44,13 @@ const MyAccount = () => {
 
   useEffect(() => {
     setName(user.name);
-    setGender(user.gender);
+    // setGender(user.gender);
     setContactNum(Number(user.contact));
     setPostalCode(user.postalcode);
     setUnitNumber(unitNum);
     // setEmail(user.email);
     setHasLoaded(true);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const getAddress = async () => {
@@ -65,17 +66,18 @@ const MyAccount = () => {
     event.preventDefault();
 
     const address = await getAddress();
+    console.log(address);
 
     axios
       .put("http://localhost:5001/users/edit", {
         name,
-        gender,
         contactNum,
         address,
         postalCode,
         token,
       })
       .then((res) => {
+        console.log("hello");
         if (res.data.status === "ok") {
           alert("account details updated");
         }
@@ -127,8 +129,8 @@ const MyAccount = () => {
                 defaultValue={name}
                 onChange={handleNameChange}
               />
-              <p className="font-bold">Gender:</p>
-              <Select
+              {/* <p className="font-bold">Gender:</p> */}
+              {/* <Select
                 fullWidth
                 label="Gender"
                 size="small"
@@ -137,7 +139,7 @@ const MyAccount = () => {
               >
                 <MenuItem value="male">Male</MenuItem>
                 <MenuItem value="female">Female</MenuItem>
-              </Select>
+              </Select> */}
               <p className="font-bold -mb-4">Contact Number:</p>
               <TextField
                 type="number"

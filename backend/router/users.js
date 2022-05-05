@@ -44,7 +44,7 @@ usersRouter.post("/create", async (req, res) => {
     req.body.password = await bcrypt.hash(req.body.password, 12);
     const createdUser = await pool.query(
       `INSERT INTO users (name, gender, contact, address, postalCode, email, password)
-      VALUES ($1, $2, $3, $4, $5, $6, $7, $8)`,
+      VALUES ($1, $2, $3, $4, $5, $6, $7)`,
       [
         req.body.name,
         req.body.gender,
@@ -58,6 +58,7 @@ usersRouter.post("/create", async (req, res) => {
     console.log("created user is: ", createdUser);
     res.json({ status: "ok", message: "user created" });
   } catch (error) {
+    console.log(error);
     res.json(usernameOrPasswordError);
   }
 });
@@ -66,22 +67,22 @@ usersRouter.put("/edit", async (req, res) => {
   try {
     // req.body.password = await bcrypt.hash(req.body.password, 12);
     const decodedToken = jwt.verify(req.body.token, process.env.SECRET);
-    if (req.body.newEmail !== decodedToken.email) {
-      await pool.query(
-        `UPDATE cartItems
-        SET userEmail=$1
-        WHERE userEmail=$2`,
-        [req.body.email, decodedToken.email]
-      );
-    }
+    console.log(decodedToken);
+    // if (req.body.newEmail !== decodedToken.email) {
+    //   await pool.query(
+    //     `UPDATE cartItems
+    //     SET userEmail=$1
+    //     WHERE userEmail=$2`,
+    //     [req.body.email, decodedToken.email]
+    //   );
+    // }
 
     const updatedUser = await pool.query(
       `UPDATE users
-      SET name=$1, gender=$2, contact=$3, address=$4, postalCode=$5
-      WHERE email=$6`,
+      SET name=$1, contact=$2, address=$3, postalCode=$4
+      WHERE email=$5`,
       [
         req.body.name,
-        req.body.gender,
         req.body.contactNum,
         req.body.address,
         req.body.postalCode,

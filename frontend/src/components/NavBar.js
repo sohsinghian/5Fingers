@@ -39,7 +39,7 @@ const NavBar = () => {
                 Menu
               </NavLink>
             </li>
-            <li className="mr-20 hover:font-bold hover:underline underline-offset-4">
+            {/* <li className="mr-20 hover:font-bold hover:underline underline-offset-4">
               <NavLink
                 to="contact-us"
                 className={(navData) =>
@@ -50,12 +50,12 @@ const NavBar = () => {
               >
                 Contact Us
               </NavLink>
-            </li>
+            </li> */}
           </ul>
           <ul className="flex flex-row mr-32">
             {token ? (
               <>
-                <li className="ml-20 hover:font-bold hover:underline underline-offset-4">
+                {/* <li className="ml-20 hover:font-bold hover:underline underline-offset-4">
                   <NavLink
                     to="cart"
                     className={(navData) =>
@@ -66,7 +66,7 @@ const NavBar = () => {
                   >
                     Cart
                   </NavLink>
-                </li>
+                </li> */}
                 <li className="ml-20 hover:font-bold hover:underline underline-offset-4">
                   <NavLink
                     to="my-account"

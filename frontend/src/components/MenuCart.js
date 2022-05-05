@@ -24,6 +24,7 @@ const MenuCart = () => {
 
   useEffect(() => {
     fetchCart();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const fetchCart = async () => {
@@ -73,7 +74,6 @@ const MenuCart = () => {
       quantity,
       token,
     });
-
     fetchCart();
   };
 
@@ -86,7 +86,6 @@ const MenuCart = () => {
       quantity,
       token,
     });
-
     fetchCart();
   };
 
@@ -121,7 +120,7 @@ const MenuCart = () => {
 
   return (
     <>
-      <div className="flex flex-col w-1/4 ml-4">
+      <div className="flex flex-col w-1/4 ml-4 font-['Roboto']">
         <div className="flex flex-col basis-1/4">
           <p className="font-bold flex justify-center mt-6 text-xl">My Order</p>
           <div className="flex flex-col mt-5 mb-8">
@@ -140,6 +139,7 @@ const MenuCart = () => {
             <p className="mb-2">Sub Total:</p>
             <p className="font-bold">${subTotal}</p>
           </div>
+
           <div className="flex flex-row justify-between">
             <p className="mb-2">Delivery Charge:</p>
             <p className="font-bold">${deliveryFee}</p>
@@ -157,7 +157,7 @@ const MenuCart = () => {
               Reach <span className="font-bold">$50.00</span> for free delivery!
             </p>
           ) : (
-            <p></p>
+            <p>Free delivery!</p>
           )}
 
           <button onClick={handleCheckout} className={buttonStyle}>
