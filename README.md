@@ -17,7 +17,7 @@ This project aims to create an app where users can add food items to cart to ord
 - JSON Web Token (JWT) for authentication
 
 ### Wireframes
-<img src="https://github.com/sohsinghian/HappEats/blob/main/wireframe.png" alt="wireframe" width="200"/>
+<img src="https://github.com/sohsinghian/HappEats/blob/main/wireframe.png" alt="wireframe" width="500"/>
 
 
 ### User Stories
