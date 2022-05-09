@@ -40,6 +40,10 @@ I started off planning the wireframes to have a rough idea of how the app should
 
 I started developing the project from the frontend with CSS and skeleton of the body. Next, I coded the backend with CRUDs. After, I tried to link the backend and frontend with axios. I continued on from there and edit the backend and frontend as and when needed. Lots of debugging required.
 
+## Wireframes
+
+![SQL Table](https://github.com/sohsinghian/happeats/blob/wireframe.jpg?raw=true)
+
 ### Problem-Solving Strategy
 
 I console.logged from where the error is to determine where the problem lies in the code and tried to move from there by debugging the codes.
