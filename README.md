@@ -4,7 +4,7 @@ HappEats is a food delivery app.
 
 ## Description
 
-This project aims to create an app where users can add food items to cart to order from the restaurant and checkout.
+HappEats is a simulation of a food delivery app where users can place online orders for food. This project aims to create an app where users can log in to their account and add food items to cart to order from the restaurant and checkout.
 
 ### Technical Used
 
