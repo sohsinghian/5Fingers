@@ -16,7 +16,8 @@ This project aims to create an app where users can add food items to cart to ord
 - OneMap API to fetch address with postal code
 - JSON Web Token (JWT) for authentication
 
-<!-- ### Wireframes -->
+### Wireframes
+![SQL Table](https://github.com/sohsinghian/HappEats/blob/main/wireframe.png?raw=true)
 
 ### User Stories
 
@@ -39,10 +40,6 @@ User must be able to:
 I started off planning the wireframes to have a rough idea of how the app should look like. Next, I planned the database table and included primary key and foreign key, and also to determine which values should be unique and not null.
 
 I started developing the project from the frontend with CSS and skeleton of the body. Next, I coded the backend with CRUDs. After, I tried to link the backend and frontend with axios. I continued on from there and edit the backend and frontend as and when needed. Lots of debugging required.
-
-## Wireframes
-
-![SQL Table](https://github.com/sohsinghian/happeats/blob/wireframe.png?raw=true)
 
 ### Problem-Solving Strategy
 
