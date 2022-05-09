@@ -42,7 +42,7 @@ I started developing the project from the frontend with CSS and skeleton of the 
 
 ## Wireframes
 
-![SQL Table](https://github.com/sohsinghian/happeats/blob/wireframe.jpg?raw=true)
+![SQL Table](https://github.com/sohsinghian/happeats/blob/wireframe.png?raw=true)
 
 ### Problem-Solving Strategy
 
