@@ -28,7 +28,7 @@ const MenuCart = () => {
   }, []);
 
   const fetchCart = async () => {
-    await axios
+    axios
       .post("http://localhost:5001/cart/all", {
         token,
       })
@@ -37,32 +37,28 @@ const MenuCart = () => {
         dispatch(userActions.setCart(data));
       });
 
-    await axios
-      .post("http://localhost:5001/cart/subTotal", { token })
-      .then((res) => {
-        const data = res.data;
+    axios.post("http://localhost:5001/cart/subTotal", { token }).then((res) => {
+      const data = res.data;
 
-        dispatch(userActions.setSubTotal(Number(data).toFixed(2)));
-        if (Number(data) > 0) {
-          if (Number(data) > 50) {
-            const deliveryCharge = 0;
-            const totalPrice = Number(data).toFixed(2);
-            dispatch(userActions.setDeliveryFee(deliveryCharge.toFixed(2)));
-            dispatch(userActions.setTotal(totalPrice));
-          } else {
-            const deliveryCharge = 4;
-            const totalPrice = (Number(data) + Number(deliveryCharge)).toFixed(
-              2
-            );
-            dispatch(userActions.setDeliveryFee(deliveryCharge.toFixed(2)));
-            dispatch(userActions.setTotal(totalPrice));
-          }
+      dispatch(userActions.setSubTotal(Number(data).toFixed(2)));
+      if (Number(data) > 0) {
+        if (Number(data) > 50) {
+          const deliveryCharge = 0;
+          const totalPrice = Number(data).toFixed(2);
+          dispatch(userActions.setDeliveryFee(deliveryCharge.toFixed(2)));
+          dispatch(userActions.setTotal(totalPrice));
         } else {
-          const zero = 0;
-          dispatch(userActions.setDeliveryFee(zero.toFixed(2)));
-          dispatch(userActions.setTotal(zero.toFixed(2)));
+          const deliveryCharge = 4;
+          const totalPrice = (Number(data) + Number(deliveryCharge)).toFixed(2);
+          dispatch(userActions.setDeliveryFee(deliveryCharge.toFixed(2)));
+          dispatch(userActions.setTotal(totalPrice));
         }
-      });
+      } else {
+        const zero = 0;
+        dispatch(userActions.setDeliveryFee(zero.toFixed(2)));
+        dispatch(userActions.setTotal(zero.toFixed(2)));
+      }
+    });
   };
 
   const handleDecrement = async (event) => {
